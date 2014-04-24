@@ -3,8 +3,13 @@
  * Written by Joshua Ching and Raunaq Suri
 */
 /*alert*/
-
 var csvList;
+var DEFAULT_DAY = 4;
+var date = new Date();
+var todayDay = date.getDay();
+
+var dayOffset = todayDay - DEFAULT_DAY;
+console.log("Day offset:" + dayOffset);
 $.ajax({
         type: "GET",
         url: "files/IBC List_2014_v1.csv",
@@ -14,6 +19,7 @@ $.ajax({
             processIBClist(data);
         }
 });
+
 
 function processIBClist(data){
     "use strict";
