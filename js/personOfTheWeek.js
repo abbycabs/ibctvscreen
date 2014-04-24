@@ -2,6 +2,7 @@
  * Finds the person of the week and displays their required data from OICR
  * Written by Joshua Ching and Raunaq Suri
 */
+/*alert*/
 
 var csvList;
 $.ajax({
@@ -16,13 +17,17 @@ $.ajax({
 
 function processIBClist(data){
     "use strict";
-    console.log("process IBC list works");
-    console.log(data);
     csvList = data;
     
     
 }
-alert(csvList);
+//Gets all the names of the people
+var csvLines = csvList.split("\n");
+for( var i = 0; i < csvLines.length; i++){
+    var csvData = csvLines[i].split(",");
+    console.log(csvData[1]);
+    
+}
 
 var person; //insert name of the person of the week here
 
