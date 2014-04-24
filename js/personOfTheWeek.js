@@ -78,5 +78,7 @@ $.getJSON(pubMedUrl,function(data){
         console.log(pubList[1]);
     }
 });
+    
+$("#name").text(names[indexOfNames]);
 
 });
