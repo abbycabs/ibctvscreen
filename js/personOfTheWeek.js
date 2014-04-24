@@ -4,12 +4,15 @@
 */
 /*alert*/
 var csvList;
-var DEFAULT_DAY = 4;
+var DEFAULT_DATE = new Date("April 20, 2014");
 var date = new Date();
-var todayDay = date.getDay();
+var timeDiff = Math.abs(date.getTime() - DEFAULT_DATE.getTime());
+var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
 
-var dayOffset = todayDay - DEFAULT_DAY;
-console.log("Day offset:" + dayOffset);
+var indexOfNames = parseInt(diffDays / 7);
+console.log(indexOfNames);
+
+console.log("Day offset:" + diffDays);
 
 
 $.ajax({
