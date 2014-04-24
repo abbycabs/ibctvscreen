@@ -45,6 +45,9 @@ for( var i = 0; i < csvLines.length; i++){
 
 //console.log(names);
 
+if (indexOfNames >= names.length){
+    indexOfNames = indexOfNames % names.length;
+}
 
 //get person of the week name and display it
 function getNameOfWeek(name){
