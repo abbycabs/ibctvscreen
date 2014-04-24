@@ -35,12 +35,15 @@ function processIBClist(data){
 
 //Gets all the names of the people
 var names = [];
+var positions = [];
 var csvLines = csvList.split("\n");
 
 for( var i = 0; i < csvLines.length; i++){
     var csvData = csvLines[i].split(",");
     names.push(csvData[1].trim()); 
     console.log(names[i]);
+    positions.push(csvData[3].trim());
+    console.log(positions[i]);
 }
 
 //console.log(names);
@@ -80,5 +83,5 @@ $.getJSON(pubMedUrl,function(data){
 });
     
 $("#name").text(names[indexOfNames]);
-
+$("#position").text(positions[indexOfNames]);
 });
