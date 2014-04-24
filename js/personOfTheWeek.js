@@ -5,7 +5,7 @@
 /*alert*/
 var csvList;
 var DEFAULT_DAY = 4;
-var date = new Date();
+var date = new Date("April 24, 2014");
 var todayDay = date.getDay();
 
 var dayOffset = todayDay - DEFAULT_DAY;
