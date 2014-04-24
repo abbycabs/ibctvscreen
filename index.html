@@ -37,6 +37,9 @@
 
 		<!-- JQUERY -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <!--MAIN CSS-->
+        <link rel="stylesheet" href="css/main.css" type="text/css">
 	</head>
 
 	<body>
@@ -44,6 +47,7 @@
 		<div class="reveal">
 
 			<div class="slides">
+                <!--TEMPORARY SCREEN-->
 				<section>
 					<h1>CLIC DAY</h1>
 					<h3>OICR</h3>
@@ -52,9 +56,33 @@
 					</p>
 				</section>
                 
+                <!--PERSON OF THE WEEK SCREEN-->
                 <section>
-                    <h1>Person of the Week</h1>
-                    <script src="js/personOfTheWeek.js"></script>  
+                    <script src="js/personOfTheWeek.js"></script>
+                    <div id="potwContainer">
+                        <div id="potwTitle">
+                            <h2>Informatics and Bio-computing</h2>
+                            <h1>PERSON of the WEEK</h1>
+                        </div>
+                        <hr class="clear"/>
+                        <div id="potwProfile">
+                            <img id="potwProfileImg" src="files/img/defaultpotwprofileitsjosh.jpg"/>
+                            <div id="potwProfileText">
+                                <h3>Joshua Ching</h3>
+                                <h3>Co-op Student Web Development</h3>
+                            </div>
+                            </span>
+                        </div>
+                        <hr class="clear"/>
+                        <div id="potwContent">
+                            <ul>
+                                <li>Education: </li>
+                                <li>Recent Publications: </li>
+                                <li>GitHub Contributions: </li>
+                                <li>Skills & Expertise: </li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
 			</div>
 
