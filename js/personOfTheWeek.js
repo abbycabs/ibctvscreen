@@ -3,19 +3,26 @@
  * Written by Joshua Ching and Raunaq Suri
 */
 
+var csvList;
 $.ajax({
         type: "GET",
         url: "files/IBC List_2014_v1.csv",
         dataType: "text",
+        async: false,
         success: function(data) {
             processIBClist(data);
         }
 });
 
 function processIBClist(data){
+    "use strict";
     console.log("process IBC list works");
     console.log(data);
+    csvList = data;
+    
+    
 }
+alert(csvList);
 
 var person; //insert name of the person of the week here
 
