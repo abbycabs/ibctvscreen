@@ -1,0 +1,43 @@
+.clear{
+    clear:both;
+}
+
+#potwContainer{
+
+}
+
+#potwTitle{
+}
+
+#potwProfile{
+    display:inline-block;
+    float:left;
+    padding-bottom:20px;
+    padding-left:40px;
+}
+
+#potwProfile h3{
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:30px;
+    padding-bottom:0px;
+    margin:0;
+}
+
+#potwProfileImg{
+    float:left;
+    width: 200px;
+    height:200px;
+    padding:0;
+    margin:0;
+}
+
+#potwProfileText{
+    float:right;
+    margin-left:40px;
+    text-align:left;
+}
+
+#potwContent{
+    text-align:left;
+}
