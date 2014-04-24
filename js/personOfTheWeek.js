@@ -16,3 +16,8 @@ function processIBClist(data){
     console.log("process IBC list works");
     console.log(data);
 }
+
+var person; //insert name of the person of the week here
+
+
+var pubMedUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=+ontario+AND+institute+AND+cancer+AND+research" + person;
