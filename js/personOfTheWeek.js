@@ -3,6 +3,8 @@
  * Written by Joshua Ching and Raunaq Suri
 */
 /*alert*/
+$(document).ready(function() {
+
 var csvList;
 var DEFAULT_DATE = new Date("April 20, 2014");
 var date = new Date();
@@ -29,8 +31,6 @@ $.ajax({
 function processIBClist(data){
     "use strict";
     csvList = data;
-    
-    
 }
 
 //Gets all the names of the people
@@ -40,13 +40,23 @@ var csvLines = csvList.split("\n");
 for( var i = 0; i < csvLines.length; i++){
     var csvData = csvLines[i].split(",");
     names.push(csvData[1].trim()); 
-    //console.log(names[i]);
+    console.log(names[i]);
 }
 
-console.log(names);
+//console.log(names);
+
+if (indexOfNames >= names.length){
+    indexOfNames = indexOfNames % names.length;
+}
+
+//get person of the week name and display it
+function getNameOfWeek(name){
+    var nameSplit = name.split(" ");
+    return nameSplit[1];
+}
 
 //PUB MED
-var person="Stein"; //insert name of the person of the week here
+var person=getNameOfWeek(names[indexOfNames]); //insert name of the person of the week here
 var pubMedUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&term=+ontario+AND+institute+AND+cancer+AND+research +AND+" + person;
 
 $.getJSON(pubMedUrl,function(data){
@@ -67,4 +77,6 @@ $.getJSON(pubMedUrl,function(data){
         console.log(pubList[0]);
         console.log(pubList[1]);
     }
+});
+
 });
