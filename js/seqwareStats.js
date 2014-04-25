@@ -3,14 +3,16 @@
  * Written by Joshua Ching and Raunaq Suri
 */
 $(document).ready(function() {
+
+//check when slide changes    
+//Reveal.addEventListener( 'slidechanged', function( event ) {    
     
 var codeFrequencyUrl = "https://api.github.com/repos/seqware/seqware/stats/code_frequency"
 var codeFrequency = {
     dataset:[0,0,1],
-    color:["#27ae60","#c0392b","#ecf0f1"]
+    color:["#2ecc71","#e74c3c","#ecf0f1"],
+    label:["+","-"]
 };
-var totalAdditions;
-var totalDeletions;
 
 //process code frequencyUrl
 $.getJSON(codeFrequencyUrl,function(data){
@@ -30,13 +32,13 @@ function processCodeFrequency (data){
 }
  
 //display code frequency graph
-var CFwidth = 500;
-var CFheight = 500;
-var radius = Math.min(CFwidth, CFheight) / 2;;
+var CFwidth = 400;
+var CFheight = 600;
+var radius = Math.min(CFwidth, CFheight) / 2;
 var pie = d3.layout.pie()
 			.sort(null);
 var arc = d3.svg.arc()
-	.innerRadius(radius-140)
+	.innerRadius(radius-100)
 	.outerRadius(radius-10);
 
 var color = d3.scale.category10();
@@ -49,15 +51,35 @@ var CFvis = d3.select("#svg_codeFrequencyGraph")
 //draw initial donut path
 var path = CFvis.selectAll("path")
 			.data(pie(codeFrequency.dataset))
+            .attr("class","slice")
 			.enter()
 			.append("path")
 			.attr("d",arc)
-			.attr("transform","translate(" + CFwidth/2 + "," + CFheight/2 + ")")
+			.attr("transform","translate(" + radius + "," + radius + ")")
 			.style("fill", function(d, i){return codeFrequency.color[i];})
 			.style("stroke","#ecf0f1")
 			.style("stroke-width","3px")
 			.each(function(d) { this._current = d; }); // store the initial angles;    
 
+//draw center label
+var labelAdd = CFvis.append("text")
+    .attr("transform","translate("+radius+","+((radius)-20)+")")
+    .attr("text-anchor","middle")
+    .text("+"+codeFrequency.dataset[0])
+    .style("fill","#2ecc71");
+var labelDelete = CFvis.append("text")
+    .attr("transform","translate("+radius+","+((radius)+20)+")")
+    .attr("text-anchor","middle")
+    .style("fill","#e74c3c")
+    .text("+"+codeFrequency.dataset[1]);
+
+//draw title label
+var labelTitle = CFvis.append("text")
+    .attr("transform","translate("+radius+","+((CFheight/2)+140)+")")
+    .attr("text-anchor","middle")
+    .style("fill","#ecf0f1")
+    .text("All Time Code Changes");
+    
 //update graph function
 function updateGraph(dataObject){
 	//update paths
@@ -66,6 +88,8 @@ function updateGraph(dataObject){
 		.ease("bounce")
 		.duration(900)
 		.attrTween("d", arcTween);
+    labelAdd.text("+"+codeFrequency.dataset[0]);
+    labelDelete.text("-"+codeFrequency.dataset[1]);
 }
 
 // Store the currently-displayed angles in this._current.
@@ -81,9 +105,6 @@ function arcTween(a) {
 function displayCodeFrequency(data){
     updateGraph(data);
 }  
-    
-//check when slide changes    
-Reveal.addEventListener( 'slidechanged', function( event ) {
 
-});
+//});
 });
