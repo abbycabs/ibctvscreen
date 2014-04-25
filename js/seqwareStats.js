@@ -13,12 +13,30 @@ var codeFrequency = {
     color:["#2ecc71","#e74c3c","#ecf0f1"],
     label:["+","-"]
 };
-
+var latestDataChanges = [];
+var latestData = { 
+    "changes": ["Additions", "Deletions"],
+    "values" : latestDataChanges
+};
 //process code frequencyUrl
 $.getJSON(codeFrequencyUrl,function(data){
     processCodeFrequency(data);
     displayCodeFrequency(codeFrequency);
 });
+    
+$.getJSON(codeFrequencyUrl, function(data){
+    
+    processLastData(data);
+
+});
+          
+function processLastData (data){
+    
+    var lastWeek = data[data.length-1];
+    latestDataChanges.push(lastWeek[1]);
+    latestDataChanges.push(lastWeek[2] * -1); // bar graph values are positive
+    
+}
     
 //process code frequency Url
 function processCodeFrequency (data){
