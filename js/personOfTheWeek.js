@@ -89,9 +89,23 @@ function getNameOfWeek(name){
     var nameSplit = name.split(" ");
     return nameSplit[1];
 }
+    
+//Sets the default image
+function getImgUrl(name){
+    var lastName = getNameOfWeek(name);
+    var nameSplit = name.split(" ");
+    console.log(nameSplit[0]);
+    var firstName = nameSplit[0];
+    var firstLetter = firstName.charAt(0);
+    var imgUrl = "http://interoicr/directory/photos/"+lastName+firstLetter+".jpg";
+    return imgUrl;
+}
 
 //PUB MED
 var person=getNameOfWeek(names[indexOfNames]); //insert name of the person of the week here
+var imgUrl = getImgUrl(names[indexOfNames]);
+console.log("IMG SRC " + getImgUrl(names[indexOfNames]));
+    
 var pubMedUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&term=+ontario+AND+institute+AND+cancer+AND+research +AND+" + person;
 
 $.getJSON(pubMedUrl,function(data){
@@ -129,5 +143,9 @@ $.getJSON(pubMedUrl,function(data){
     
 $("#name").text(names[indexOfNames]);
 $("#position").text(positions[indexOfNames]);
+$('#potwProfileImg').attr('src', imgUrl).load(function(){
+    this.width;   // Note: $(this).width() will not work for in memory images
+
+});    
 });
                       
