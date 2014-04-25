@@ -101,18 +101,29 @@ $.getJSON(pubMedUrl,function(data){
     
     //if pub count is less than or equal to 0
     if (pubCount <= 0){
-        console.log("No publications");
+        //console.log("No publications");
+        $("#recentPubs").hide();
     }
     //if pub count is less than or equal to 1
     else if(pubCount <= 1){
-        console.log("Pub med: "+pubList[0]);    
+        $("#recentPubs").show();
+        //console.log("Pub med: "+pubList[0]);
+        parsePaper(pubList[0]);
+        $("#pubMed1").text(title);
+        $("#pubMed2").hide();
     }
     //if pub count is greater than 1
     else{
+        $("#recentPubs").show();
+        //first pubmed
         parsePaper(pubList[0]);
-        console.log("Pub med #1: "+pubList[0] + "parsed "+ title);
+        //console.log("Pub med #1: "+pubList[0] + "parsed "+ title)
+        $("#pubMed1").text(title);
+        //second pubmed
         parsePaper(pubList[1]);
-        console.log("Pub med #2: "+pubList[1] + "parsed "+ title);
+        //console.log("Pub med #2: "+pubList[1] + "parsed "+ title);
+        $("#pubMed2").show();
+        $("#pubMed2").text(title);
     }
 });
     
