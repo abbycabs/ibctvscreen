@@ -73,15 +73,36 @@ $.getJSON(pubMedUrl,function(data){
     }
     //if pub count is less than or equal to 1
     else if(pubCount <= 1){
+        var title = parsePaper(pubList[0]);
         console.log(pubList[0]);    
     }
     //if pub count is greater than 1
     else{
+        var title = parsePaper(pubList[0]);
+        var title2 = parsePaper(pubList[1]);
         console.log(pubList[0]);
         console.log(pubList[1]);
     }
 });
     
+function parsePaper(id){
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: "http://www.ncbi.nlm.nih.gov/pubmed/"+id+"?report=xml&format=text",
+        dataType: "jsonp",
+        async: false,
+        success: function(data) {
+            var xmlDoc = $.parseXML(data);
+            console.log(xmlDoc.find("ArticleTitle"));
+            return true;
+            
+        }
+});
+    
+}
+    
 $("#name").text(names[indexOfNames]);
 $("#position").text(positions[indexOfNames]);
 });
+                      
