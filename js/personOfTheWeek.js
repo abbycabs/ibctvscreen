@@ -125,7 +125,7 @@ $.getJSON(pubMedUrl,function(data){
     //if pub count is greater than 1
     else{
         parsePaper(pubList[0]);
-        console.log("Pub med #1: "+pubList[0] + "parsed "+title);
+        console.log("Pub med #1: "+pubList[0] + "parsed "+ title);
         parsePaper(pubList[1]);
         console.log("Pub med #2: "+pubList[1] + "parsed "+ title);
     }
