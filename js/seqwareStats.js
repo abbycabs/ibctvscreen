@@ -32,9 +32,9 @@ function processCodeFrequency (data){
 }
  
 //display code frequency graph
-var CFwidth = 400;
+var CFwidth = 800;
 var CFheight = 600;
-var radius = Math.min(CFwidth, CFheight) / 2;
+var radius = Math.min(400) / 2;
 var pie = d3.layout.pie()
 			.sort(null);
 var arc = d3.svg.arc()
@@ -55,7 +55,7 @@ var path = CFvis.selectAll("path")
 			.enter()
 			.append("path")
 			.attr("d",arc)
-			.attr("transform","translate(" + radius + "," + radius + ")")
+			.attr("transform","translate(" + CFwidth/2 + "," + radius + ")")
 			.style("fill", function(d, i){return codeFrequency.color[i];})
 			.style("stroke","#ecf0f1")
 			.style("stroke-width","3px")
@@ -63,21 +63,34 @@ var path = CFvis.selectAll("path")
 
 //draw center label
 var labelAdd = CFvis.append("text")
-    .attr("transform","translate("+radius+","+((radius)-20)+")")
+    .attr("transform","translate("+CFwidth/2+","+((radius)-20)+")")
     .attr("text-anchor","middle")
     .text("+"+codeFrequency.dataset[0])
     .style("fill","#2ecc71");
 var labelDelete = CFvis.append("text")
-    .attr("transform","translate("+radius+","+((radius)+20)+")")
+    .attr("transform","translate("+CFwidth/2+","+((radius)+20)+")")
     .attr("text-anchor","middle")
     .style("fill","#e74c3c")
     .text("+"+codeFrequency.dataset[1]);
 
+//draw graph label descriptions    
+var labelAddDescription = CFvis.append("text")
+    .attr("transform","translate("+((CFwidth/2)+200)+","+((CFheight/2)+90)+")")
+    .attr("text-anchor","middle")
+    .text("Lines added")
+    .style("fill","#2ecc71");
+var labelDeleteDescription = CFvis.append("text")
+    .attr("transform","translate("+(0+190)+","+((CFheight/2)+90)+")")
+    .attr("text-anchor","middle")
+    .text("Lines deleted")
+    .style("fill","#e74c3c");
+    
 //draw title label
 var labelTitle = CFvis.append("text")
-    .attr("transform","translate("+radius+","+((CFheight/2)+140)+")")
+    .attr("transform","translate("+CFwidth/2+","+((CFheight/2)+140)+")")
     .attr("text-anchor","middle")
     .style("fill","#ecf0f1")
+    .style("font-weight","bold")
     .text("All Time Code Changes");
     
 //update graph function
