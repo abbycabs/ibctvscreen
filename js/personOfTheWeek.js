@@ -26,8 +26,40 @@ $.ajax({
             processIBClist(data);
         }
 });
+    
+//Parses the xml by first turning it into a json then going through it to return the title
+function parsePaper(id){
+    var articleUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id="+ id;
+    
+    console.log(articleUrl);
+    var title; 
+    getTitle();
+    
+    function getTitle(){
+        $.ajax({
+            
+            url : articleUrl,
+            type: 'get',
+            dataType : 'json',
+            async : false,
+            success : function(data){
+                processTitle(data);
+            }
+        });
+    }
+    return title;
+}
 
-
+var title;
+function processTitle(json){
+    var data = json;
+    var result = data["result"]; //search result data object
+    console.log(result);
+    var pubid = result["uids"][0];
+    console.log("PUB ID " + pubid);
+    title = result[pubid]["title"];
+    console.log(title);
+}
 function processIBClist(data){
     "use strict";
     csvList = data;
@@ -77,11 +109,14 @@ $.getJSON(pubMedUrl,function(data){
     }
     //if pub count is greater than 1
     else{
-        console.log("Pub med #1: "+pubList[0]);
-        console.log("Pub med #2: "+pubList[1]);
+        parsePaper(pubList[0]);
+        console.log("Pub med #1: "+pubList[0] + "parsed "+title);
+        parsePaper(pubList[1]);
+        console.log("Pub med #2: "+pubList[1] + "parsed "+ title);
     }
 });
     
 $("#name").text(names[indexOfNames]);
 $("#position").text(positions[indexOfNames]);
 });
+                      
