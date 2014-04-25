@@ -12,7 +12,7 @@ var timeDiff = Math.abs(date.getTime() - DEFAULT_DATE.getTime());
 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
 
 var indexOfNames = parseInt(diffDays / 7);
-console.log(indexOfNames);
+console.log("Index of Names: "+indexOfNames);
 
 console.log("Day offset:" + diffDays);
 
@@ -41,9 +41,9 @@ var csvLines = csvList.split("\n");
 for( var i = 0; i < csvLines.length; i++){
     var csvData = csvLines[i].split(",");
     names.push(csvData[1].trim()); 
-    console.log(names[i]);
+    //console.log(names[i]);
     positions.push(csvData[3].trim());
-    console.log(positions[i]);
+    //console.log(positions[i]);
 }
 
 //console.log(names);
@@ -73,12 +73,12 @@ $.getJSON(pubMedUrl,function(data){
     }
     //if pub count is less than or equal to 1
     else if(pubCount <= 1){
-        console.log(pubList[0]);    
+        console.log("Pub med: "+pubList[0]);    
     }
     //if pub count is greater than 1
     else{
-        console.log(pubList[0]);
-        console.log(pubList[1]);
+        console.log("Pub med #1: "+pubList[0]);
+        console.log("Pub med #2: "+pubList[1]);
     }
 });
     
