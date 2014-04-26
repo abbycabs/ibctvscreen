@@ -13,3 +13,4 @@ Here are some screen ideas:
 The current iteration can be viewed at:
 http://raunaqsuri.github.io/ibctvscreen
 
+This project uses the framework reveal.js (https://github.com/hakimel/reveal.js/)
