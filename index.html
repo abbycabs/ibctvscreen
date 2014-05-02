@@ -36,7 +36,7 @@
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 
-	
+
 
         <!--MAIN CSS-->
         <link rel="stylesheet" href="css/main.css" type="text/css">
@@ -48,11 +48,9 @@
 		<div class="reveal">
 
 			<div class="slides">
-                <!--TEMPORARY SCREEN-->
-
                 <!--PERSON OF THE WEEK SCREEN-->
                 <section>
-                   
+
                     <div id="potwContainer">
                         <div id="potwTitle">
                             <h2>Informatics and Bio-computing</h2>
@@ -89,7 +87,7 @@
                     <div id="svg_latestChanges"></div>
                 </section>
                 <section>
-                    <h1>Wormbase Stats</h1>
+                    <h1>WormBase Stats</h1>
                     <svg id="svg_codeFrequencyGraphWB"></svg>
                 </section>
                 </section>
@@ -104,7 +102,7 @@
 			</div>
 
 		</div>
-    
+
 	   <!-- JQUERY -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!--D3.JS-->
@@ -121,12 +119,15 @@
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
-				progress: true,
+				controls: false,
+				progress: false,
 				history: true,
 				center: true,
+                autoSlide: 9e3,
+                loop: true,
+                autoSlideStoppable: false,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				theme: 'simple', //Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
